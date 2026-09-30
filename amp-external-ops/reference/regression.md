@@ -52,6 +52,19 @@ Include findings in your final response, not just a delivery acknowledgment.
 6. If peer coordination is authorized, send one echo-only unique marker per direction and inspect destination persistence. Do not create another task loop.
 7. Recover the report using discovered file tools; if download fails, try `thread_file_url` and `amp files get` with a new destination filename. Inspect contents.
 
+## Existing-thread wake-up recovery
+
+Run only with steering authorization for the exact existing thread, or an approved disposable. Do not deliberately break UI, credentials, setup or an orb to induce this case. If the symptom is absent, mark it unexercised rather than claiming recovery coverage. Follow [the operating procedure](../SKILL.md#wake-up-a-blank-stuck-or-unknown-external-thread).
+
+1. Record the ID and read-only pre-check status/transcript, last visible activity and any UI-not-loading/blank/stuck symptom. Separate owner reports from server observations; unknown status or an empty transcript is not a dead-orb/auth diagnosis.
+2. Check archive state and approval/blocker metadata. Stop on an unsafe or unauthorized route; do not silently unarchive, dismiss approvals, authenticate or change settings to enable the test.
+3. Send exactly one uniquely marked harmless follow-up to that same ID requesting existing-context status and observable blockers, with no restart/reset/file/config/auth change solely for the check. Record submission time and route. On uncertain delivery, inspect before considering any retry.
+4. Observe read-only within a declared budget (for example 5–10 second checks, at most 2 minutes). Save separate evidence of acceptance, persistence and renewed activity. A marker in a user message alone fails the activity check; a native response/report or owner-confirmed usability must be labeled by its source. Record the actual observed delay without claiming a latency guarantee.
+5. On success, verify the original ID is reused and no replacement/reset was needed in the observed sequence. Preserve the workspace and available transcript/report evidence. Resumability is the tested result; restoration of missing prior transcript/state or remembered context is not. If continuity is required, check a value provided only before the symptom, not a value resupplied in the wake-up.
+6. On budget expiry, report no renewed activity observed in that window and preserve the thread. Only after an unsuccessful wake-up may replacement be recommended, with separate creation/cleanup authorization. A blocked check is not a performed failure. Do not automatically replace, archive or delete it.
+7. Record what no-change verification actually covers and which evidence remains missing. Owner-confirmed recovery without server-side assistant output is a scoped observation, not independently verified execution or parity across agents. See [the dated case](verification-2026-09-30.md#existing-thread-wake-up-observation).
+8. Add before/after evidence, marker, budget, result/source and existing-thread disposition to the ledger. A pre-existing user thread remains preserved and is not a disposable cleanup target.
+
 ## MCP and selection checks
 
 - Record each layer separately: registry, schema, connection/auth category, Amp bridge, native catalogue, native read invocation. Test only a schema-reviewed harmless read. Stop at an auth or feature gate.

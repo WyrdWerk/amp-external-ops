@@ -155,6 +155,29 @@ Claude's native report named Sonnet 5.5 and medium effort despite native login s
 
 ## 7. Recover and clean up only owned resources
 
+### Wake up a blank, stuck or unknown external thread
+
+A blank transcript, stuck-looking thread, UI-not-loading report or `agentState=unknown` is a visibility symptom, not proof of a dead orb or authentication failure. Try the existing thread before recommending replacement, within the user's steering authorization:
+
+1. **Inspect read-only first.** Capture its exact ID, current status and available transcript, last visible activity, archive state and any explicit error or pending approval. Record a UI symptom separately from server-side evidence. Do not change configuration or dismiss an approval with a wake-up message; an archived thread requires authorized unarchive before continuation.
+2. **Send one harmless follow-up to the same ID.** Use the exposed `send_thread_message` or the [existing CLI continuation route](#2-launch-and-steer-ordinary-or-external-threads), not a new thread or an orb restart. Ask for a concise status from existing context and observable blockers. For example:
+
+   ```text
+   <RUN>-WAKE. Please resume from the existing task context if available and
+   reply with a concise status. Do not restart, reset, or modify files/settings
+   solely for this check; do not change setup, providers, secrets, MCP or auth.
+   Report any launch, environment or authentication blocker you can observe.
+   If prior context is unavailable, say so rather than reconstructing it.
+   ```
+
+3. **Observe within a declared budget.** For example, check every 5–10 seconds for up to 2 minutes; these are operator choices, not product guarantees. Inspect available transcript/status, native activity, requested reply, callback or sanitized report file; owner-confirmed UI usability is evidence too, labeled as owner-reported. Acceptance or a marker only in a user message is not renewed execution. Do not flood the thread with repeated wake-ups; inspect destination state after an uncertain send before considering a retry.
+4. **Reuse it if it wakes.** Preserve its ID, workspace and available evidence, and continue the authorized task in that thread. Record what actually resumed and any blocker; status may remain unknown and the server transcript may still be incomplete.
+5. **Recommend replacement only after the wake-up attempt is unsuccessful.** At budget expiry, record “no renewed activity observed within the budget,” not “dead orb.” Preserve the old thread and report the limitation before proposing a separately authorized replacement. A blocked/unsafe wake-up is an unperformed check, not evidence of failure. Do not automatically create a replacement, reset, archive/delete the original, or repair credentials/settings.
+
+A successful wake-up demonstrates resumability in that observation. It does **not** restore or prove missing prior transcript/state, remembered context or completed work. Verify continuity separately when needed. In the [dated recovery case](reference/verification-2026-09-30.md#existing-thread-wake-up-observation), the owner confirmed usability after Puck's normal follow-up; the server transcript still provided no resumed assistant activity. This is not a guarantee for every external agent or blank UI. See [failure-recovery guidance](reference/capabilities.md#failure-recovery) and the [wake-up regression checklist](reference/regression.md#existing-thread-wake-up-recovery).
+
+### Lifecycle recovery and cleanup
+
 ```bash
 amp threads archive <id>
 amp threads archive <id> --unarchive

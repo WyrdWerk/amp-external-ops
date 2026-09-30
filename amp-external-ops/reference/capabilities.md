@@ -53,6 +53,21 @@ Claude native tools included Agent, Artifact, AskUserQuestion, Bash, Edit, ListA
 
 CLI exit status, destination persistence, execution and recipient receipt are distinct checkpoints. Cross-project communication was not tested. Deferred callback arrival did not establish an ordering or latency contract.
 
+## Failure recovery
+
+For blank, stuck-looking, UI-not-loading or unknown-state external threads, follow the [existing-thread wake-up procedure](../SKILL.md#wake-up-a-blank-stuck-or-unknown-external-thread) before recommending replacement. Inspect status/transcript read-only, then send one authorized harmless follow-up to the same ID asking for existing-context status and blockers without restart/reset/config/auth changes. Observe boundedly; reuse the thread if usable activity returns. Preserve it and only propose a separately authorized replacement after an unsuccessful wake-up check, not on silence alone.
+
+| Observation | Safe interpretation / action |
+|---|---|
+| Blank or initial-prompt-only transcript; `agentState=unknown` | Server visibility alone does not establish execution/state; do not diagnose a dead orb, lost state or auth failure |
+| UI does not load while server tools can inspect the thread | Record UI and server symptoms separately; a normal follow-up may restore usability without a restart |
+| Wake-up accepted or appears as a user message | Submission/persistence only; look for renewed native activity, response, callback/report or owner-confirmed usability |
+| Existing thread becomes usable after follow-up | Preserve and reuse it; label owner reports separately from independently observed execution |
+| No renewed activity within the declared budget | Wake-up outcome unverified/unsuccessful within that window, not proof of permanent failure; retain evidence before a replacement recommendation |
+| Explicit blocker, archive state or pending approval | Report the observed blocker; do not repair auth/configuration or bypass approvals. Unarchive only with authorization |
+
+The [September 30 wake-up observation](verification-2026-09-30.md#existing-thread-wake-up-observation) combines Puck's recorded status/read/send with the owner's “oh it worked.” No restart/reset action appears in that sequence, but no resumed assistant output appears server-side either. Successful wake-up supports resumability/usability of that existing thread; it does **not** recover or prove missing prior transcript/state. This single observation is not a Cursor/Claude parity result or a universal UI recovery guarantee.
+
 ## Skills and origins
 
 | Session/location | Observation | Untested |

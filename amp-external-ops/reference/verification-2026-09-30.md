@@ -98,6 +98,29 @@ The installation follow-up verified `amp clone --help` (`--no-git-setup`, User/W
 
 This establishes the documented local copy/Git mechanics, not hosted installation into another account, shared import execution, required signing on a hosted destination, renamed-skill inheritance, or native reload behavior. Each installation must verify its authorized destination, policy and resolved skill origin. Root README and AGENTS.md provide the reusable Puck request/runbook; they are repository documentation, not bundled runtime prerequisites.
 
+## Existing-thread wake-up observation
+
+This is a separate, scoped recovery observation for the existing external-agent thread, not another disposable external-agent orchestration probe. Evidence comes from that thread and Puck's recorded wake-up sequence. The agent key/version and actual served model were not established for this case; do not attribute it to both Cursor and Claude.
+
+| Sequence | Evidence / scope |
+|---|---|
+| Step 1 | Original user task recorded in the target thread |
+| Step 2 | Puck's `get_thread_status` returned `agentState=unknown`; its `read_thread` showed only the original prompt, no assistant/tool activity or visible explanation for the UI issue |
+| Step 3 | Owner reported that the thread had worked earlier; prior interaction was not present in the inspected server transcript |
+| Step 4 | Owner authorized the harmless wake-up check |
+| Step 5 | Puck sent one normal `send_thread_message` to the same ID; send confirmation recorded |
+| Step 6 | Owner replied “oh it worked”; owner-confirmed usability, not a recorded target-agent response |
+
+The recorded follow-up was:
+
+> Wake-up check: please resume from the existing task context if available and reply with a concise status. Do not restart, reset, or modify files/settings solely for this check; report any launch, environment, or authentication blocker you can observe.
+
+No restart/reset or replacement action was performed in the recorded Puck sequence. The owner confirmed the existing thread became usable after the normal follow-up. This supports resumability in that observation, not a general recovery guarantee or a diagnosis of the original UI/visibility problem. The interval to the owner report is not a measured agent execution latency or SLA.
+
+During this documentation follow-up, read-only inspection still found only the original prompt and wake-up message server-side, with no resumed assistant/tool activity. Consequently **missing prior transcript/state was not shown to be restored**, and retained context/completed work were not independently verified. Recovery evidence is owner-reported usability correlated with Puck's recorded send; a user-message marker alone would not establish execution. No complete native pre/post state snapshot was available.
+
+The implementation thread did not wake, restart, reset, replace, archive or delete this pre-existing thread, create a new live test, or change settings/authentication. It updated the [operating procedure](../SKILL.md#wake-up-a-blank-stuck-or-unknown-external-thread), [failure-recovery guidance](capabilities.md#failure-recovery) and [regression checklist](regression.md#existing-thread-wake-up-recovery). Existing offline validators cover the added links/anchors and package structure; installer/runbook tests are local mechanics, not a new live wake-up test.
+
 ## Remaining unknowns and next approved tests
 
 Authenticated picker values; actual external served-model metadata; native process termination after archive; active-parent callback queue/latency; project inheritance and skill collisions/reload; numeric Cursor version; exhaustive Claude native skill differences; complete native auth/config no-change proof. Missing-credential failures were not induced by altering credentials. No provider, routing, secret, setup, MCP configuration, or skill change was authorized during the investigation.
