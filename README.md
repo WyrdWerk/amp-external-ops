@@ -8,7 +8,19 @@ Canonical repository: **https://github.com/WyrdWerk/amp-external-ops**. The skil
 
 Paste this into **your own Puck conversation**:
 
-> Install the skill from https://github.com/WyrdWerk/amp-external-ops into my personal Amp User Skills repository and publish the reviewed installation there. Read README.md and follow the installation runbook in AGENTS.md. Discover my repository and permissions, inspect and pin the source revision, and preserve the complete amp-external-ops package, including reference files. Preserve existing skills; if a conflicting copy exists, ask before replacing or removing it. Do not modify providers, secrets, MCP, authentication, account settings, or external-agent setup. Return the destination, source revision, published commit, validation and reload results, and any blocker. If Puck needs an executor, use an authenticated normal Amp thread in my account and report back here.
+```text
+Install the latest revision from the main branch of https://github.com/WyrdWerk/amp-external-ops into my personal Amp User Skills repository and publish the reviewed installation there.
+
+Read README.md and follow the installation runbook in AGENTS.md. Discover my repository and permissions, inspect and pin the source revision, and preserve the complete amp-external-ops package, including all reference files and the latest wake-up/recovery guidance.
+
+Preserve existing skills. If a conflicting copy exists, ask before replacing or removing it. Do not modify providers, secrets, MCP, authentication, account settings, or external-agent setup. Do not trigger login or OAuth to work around a blocker.
+
+Validate the complete package, commit and push only to my personal Amp User Skills repository, then reload skills where supported. Verify the resolved skill origin and bundled resources; report any local copy that masks the published version without deleting it.
+
+Return the destination repository and scope, source revision, published commit, validation results, reload/discovery results, and any blocker or unverified behavior. Do not claim fresh Cursor/Claude Code inheritance unless it was actually tested.
+
+If Puck needs an executor, use an authenticated normal Amp thread in my account and report the results back to this Puck conversation.
+```
 
 This request authorizes publication to **your personal skills repository**, not this GitHub repository, another user's repository, or your workspace. Puck must inspect the skill before publishing it. If its capabilities or permissions cannot complete the route, it should prepare the change and report the exact remaining step rather than bypass authentication or change account settings.
 
@@ -55,7 +67,8 @@ If the skill is already available, use it. Global User/Workspace repositories, l
 For an **explicitly approved local installation**, clone and review the repository, then copy only the skill directory with the offline installer:
 
 ```bash
-git clone https://github.com/WyrdWerk/amp-external-ops.git
+git clone --branch main https://github.com/WyrdWerk/amp-external-ops.git
+git -C amp-external-ops rev-parse HEAD
 # Inspect the checkout and scripts before running them.
 bash amp-external-ops/install.sh
 ```

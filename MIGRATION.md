@@ -33,9 +33,9 @@ For an executable Puck procedure covering this package and other skill layouts, 
 
 1. Use `amp skill repositories` to discover scope, clone URL and write permission. Prefer User scope unless Workspace is explicitly requested.
 2. Use the canonical repository cache clone prescribed by the current building-skills guidance. Preserve any existing work; don't blindly reset a dirty clone.
-3. Read the installed predecessor and its repository history. Copy the whole reviewed `amp-external-ops/` package, not just SKILL.md. Compare origin, path and contents to detect collisions.
+3. Select the latest source `main`, record its commit and review that fixed revision as described in AGENTS.md. Read the installed predecessor and its repository history. Copy the whole reviewed `amp-external-ops/` package, including all references and wake-up/recovery guidance, not just SKILL.md. Compare origin, path and contents to detect collisions.
 4. Remove/rename the predecessor only with approval for that migration and after preserving a rollback commit. Verify all bundled links and frontmatter.
-5. Commit and push to the explicitly authorized global scope, then reload skills in the current normal Amp session. New-thread inheritance should be tested separately; external restart behavior is not guaranteed.
+5. Validate, commit and push to the explicitly authorized global scope, then reload skills in the current normal Amp session where supported. Verify resolved origin/resources and report any masking copy without deleting it. Report reload as unperformed if unavailable; do not compensate with setup/auth changes. Fresh Cursor/Claude inheritance must be reported as unverified unless actually tested; external restart behavior is not guaranteed.
 
 Do not install/update skills to repair an investigation unless that class of change is authorized. Never write into the managed `~/.cache/amp/global-skills` cache or alter external setup scripts.
 

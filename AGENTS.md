@@ -17,7 +17,7 @@ Installation rules follow the [official Amp skills documentation](https://ampcod
 
 ### 2. Review and pin the source package
 
-For this repository, clone into a separate review directory and record `git rev-parse HEAD`. Read `amp-external-ops/SKILL.md`, all bundled `reference/` files, and any scripts/configuration before copying. There is no bundled MCP in this package and no need to execute `install.sh` for global publication.
+For this repository, clone the latest `main` into a separate review directory. If reusing a source clone, verify its origin and clean state, fetch and fast-forward `main`; stop on dirty state or divergence. Verify HEAD matches the fetched `origin/main` and record `git rev-parse HEAD`. Review and copy that fixed revision, not a mixture of files from subsequent pulls. Read `amp-external-ops/SKILL.md`, all bundled `reference/` files including wake-up/recovery guidance, and any scripts/configuration before copying. There is no bundled MCP in this package and no need to execute `install.sh` for global publication.
 
 For another Git repository or local source:
 
@@ -107,7 +107,7 @@ Match local HEAD to the remote branch before claiming publication. A signing/per
 
 ### 6. Verify discovery and report to the requesting Puck
 
-After authorized publication, use normal Amp's `reload_skills` tool. Shell `amp skill list` does not reload the current session. Inspect the resolved name, origin/path and bundled resources; local or built-in copies can mask a repository copy, and personal skills precede workspace skills. Do not delete a masking copy without approval.
+After authorized publication, use normal Amp's `reload_skills` tool where exposed. If unavailable, report reload as unperformed and route the request back to Puck or an authorized normal session; do not restart agents or change setup to compensate. Shell `amp skill list` does not reload the current session. Inspect the resolved name, origin/path and bundled resources; local or built-in copies can mask a repository copy, and personal skills precede workspace skills. Report any masking copy without deleting it unless explicitly approved.
 
 New normal threads load published personal/workspace skills automatically according to Amp documentation. Automatic predecessor inheritance into Cursor/Claude was observed, but the renamed package and another user's environment still require their own check. If fresh-agent tests are outside the approved scope, say so; do not add bootstrap prefixes or restart agent processes unasked.
 
