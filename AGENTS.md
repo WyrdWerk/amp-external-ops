@@ -1,69 +1,36 @@
-# AGENTS.md — amp-thread-ops deployment runbook
+# Maintainer guidance for amp-external-ops
 
-Goal: make the `amp-thread-ops` skill discoverable by every agent in an Amp setup — Amp's own agent and all external agents (Pi, Claude Code, Codex, OpenCode, Cursor CLI, Grok CLI, Antigravity) — in orb threads and local runs.
+This repository is a skill and documentation package, not an account provisioning script. Preserve ordinary Amp thread operations and the evidence-driven Cursor/Claude workflows. Discover current capabilities rather than introducing unconditional installers or setup mutations.
 
-Any assistant (Puck, Amp, Pi, Claude Code…) given this repository can perform the steps below. All steps are idempotent and reversible.
+## Boundaries
 
-## Step 0 — Preflight
+- A documentation change does not authorize installation, global skill publication, live thread creation, authentication, or account-wide changes. Follow the user's stated destinations and approvals.
+- Never alter Amp settings, providers, secrets, environment variables, MCP configuration or built-in external-agent setup as part of repository maintenance.
+- Do not invoke auth helpers to test failures. If blocked, record the exact sanitized error and stop that route.
+- Do not reset external agents or execute historical command templates. [deploy/originals.json](deploy/originals.json) is retained for provenance only.
+- Never commit raw transcripts, exports, credentials or temporary signed URLs. Private evidence links and sanitized summaries are sufficient.
+- Preserve unexpected user edits; use reviewable commits and never rewrite published history as rollback.
+
+## Editing
+
+The loadable package is `amp-external-ops/`, with frontmatter name matching that directory. Keep `SKILL.md` concise and use `reference/` for detailed matrices, dated evidence and live regression. Update README, metadata, installer paths and migration notes consistently.
+
+Label results as verified, documented, agent-reported, inference, blocked or unknown. Do not strengthen a reported native model into verified served usage; a received owner-authored callback into source authentication; or an archive into process termination. Preserve late corrections and the unauthorized auth-attempt incident.
+
+Scope verification notes by date, CLI/native versions, account/project context and resource budget. Test renamed skill inheritance only in an explicitly authorized live run. Other external agents are not covered by the Cursor/Claude evidence.
+
+## Offline verification
 
 ```bash
-amp --version                      # Amp CLI present and authenticated
-amp config external-agents list    # note the agent keys
+node scripts/validate.mjs
+node tests/validate.mjs
+bash -n install.sh tests/install.sh
+bash tests/install.sh
+git diff --check
 ```
 
-## Step 1 — Install for Amp's own agent
+Installer tests must use disposable HOME directories, preserve conflicting content, and perform no network or authentication. Keep the package dependency-free unless a demonstrated requirement justifies adding tooling.
 
-```bash
-amp skill add https://github.com/WyrdWerk/amp-thread-ops
-amp skill list | grep amp-thread-ops   # verify
-```
+## Publication and rollback
 
-## Step 2 — Install for the current machine (all Agent Skills-spec agents)
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/WyrdWerk/amp-thread-ops/main/install.sh | bash
-ls ~/.agents/skills/amp-thread-ops/SKILL.md   # verify
-```
-
-Agents scan `~/.agents/skills/` at process start — install before launching the agent, not mid-session.
-
-## Step 3 — Bootstrap external-agent orb threads
-
-Orbs are fresh sandboxes: they receive neither Amp User Skills nor local files. For each external-agent key from Step 0:
-
-1. Read the current new-thread command:
-
-   ```bash
-   amp config external-agents show <key>
-   ```
-
-2. If the command already contains `amp-thread-ops/main/install.sh`, skip (idempotent).
-3. Prepend — never replace — this non-fatal bootstrap:
-
-   ```
-   (curl -fsSL https://raw.githubusercontent.com/WyrdWerk/amp-thread-ops/main/install.sh | bash) >/dev/null 2>&1; 
-   ```
-
-4. Apply:
-
-   ```bash
-   amp config external-agents update <key> --new-thread-command '<full new command>'
-   ```
-
-Rules:
-
-- Preserve the original command byte-for-byte after the prefix.
-- The prefix is non-fatal (`>/dev/null 2>&1` + `;` separator): a network failure must never block the agent from starting.
-- NEVER set `--setup-script` on a built-in agent — it replaces the agent's default install command.
-- Resume commands need no change: resumes run in the same orb, where the skill is already installed.
-
-## Step 4 — Verify end-to-end
-
-1. `amp skill list | grep amp-thread-ops`
-2. Launch a test orb thread in an external-agent mode; ask the agent to confirm it can read `~/.agents/skills/amp-thread-ops/SKILL.md`.
-
-## Revert
-
-- `amp config external-agents reset <key>` restores defaults — but also clears pre-existing customizations; recover exact pre-deploy commands from `deploy/originals.json`.
-- `amp skill remove amp-thread-ops`
-- `rm -rf ~/.agents/skills/amp-thread-ops`
+Follow [MIGRATION.md](MIGRATION.md). GitHub push, repository rename, local installation, and global User/Workspace publication are distinct authorizations. Commit/push only to the requested destination; never edit managed global caches. Use a revert commit for published content, preserve local backups, and obtain explicit approval for any reverse repository rename or global publication.
