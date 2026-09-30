@@ -43,7 +43,7 @@ September 30, 2026 probes showed that both external agents could independently l
 
 These findings are account/version-specific. Requested mode is not served model; connected MCP is not invocable MCP; callback acceptance is not receipt; archival is not native-process termination. The skill requires current capability discovery and explicit authorization rather than promising universal behavior.
 
-Public verification notes use neutral case labels and relative sequence, not concrete thread links/IDs, private correlation markers or wall-clock event times. Original evidence remains outside this repository. Earlier commits may still contain removed references and contributor email metadata; forward redaction is not history erasure. See [privacy cleanup and history limits](MIGRATION.md#privacy-cleanup-and-history-limits).
+Public verification notes use neutral case labels and relative sequence, not concrete thread links/IDs, private correlation markers or wall-clock event times. An owner-authorized rewrite also redacts those disclosures and contact/source-tracing metadata from reachable `main` history. Original evidence and a restricted history backup remain outside this repository. Existing clones, forks, cached commit pages and other copies are not claimed erased. Existing contributors should re-clone or carefully migrate unpublished work rather than merge old history. See [privacy cleanup and history limits](MIGRATION.md#privacy-cleanup-and-history-limits).
 
 ## Read by task
 
