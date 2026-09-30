@@ -4,6 +4,27 @@ A capability-driven skill for orchestrating [Amp](https://ampcode.com) threads, 
 
 Canonical repository: **https://github.com/WyrdWerk/amp-external-ops**. The skill lives in [amp-external-ops/SKILL.md](amp-external-ops/SKILL.md).
 
+## Ask your Puck to install it
+
+Paste this into **your own Puck conversation**:
+
+> Install the skill from https://github.com/WyrdWerk/amp-external-ops into my personal Amp User Skills repository and publish the reviewed installation there. Read README.md and follow the installation runbook in AGENTS.md. Discover my repository and permissions, inspect and pin the source revision, and preserve the complete amp-external-ops package, including reference files. Preserve existing skills; if a conflicting copy exists, ask before replacing or removing it. Do not modify providers, secrets, MCP, authentication, account settings, or external-agent setup. Return the destination, source revision, published commit, validation and reload results, and any blocker. If Puck needs an executor, use an authenticated normal Amp thread in my account and report back here.
+
+This request authorizes publication to **your personal skills repository**, not this GitHub repository, another user's repository, or your workspace. Puck must inspect the skill before publishing it. If its capabilities or permissions cannot complete the route, it should prepare the change and report the exact remaining step rather than bypass authentication or change account settings.
+
+For **another skill**, replace the source URL and selected skill name. A repository may contain a root skill, nested skill, or several skills; Puck must locate `SKILL.md`, read its frontmatter, and confirm which package to install. The installation runbook covers Git repositories/local packages and shared Amp skill URLs. It is a reusable procedure, not a promise that every skill is safe or compatible with every hosted destination.
+
+Choose a different scope explicitly if needed:
+
+| Requested scope | Destination and effect |
+|---|---|
+| Personal User Skills | Requesting user's global repository; push publishes across Amp environments |
+| Workspace Skills | Explicitly named workspace repository; admin/write permission required; affects teammates |
+| Project only | `.agents/skills/<name>/` in the named checkout; commit/push only if requested |
+| This machine only | Reviewed full package in a local skill directory; not account-wide or durable across fresh orbs |
+
+See [AGENTS.md: Puck installation runbook](AGENTS.md#puck-installation-runbook) for source review, exact copy/publication steps, verification, conflict handling and rollback. GitHub publication of this package alone does not install it into your account. Existing local skills may mask a newly published skill with the same name.
+
 ## What the evidence supports
 
 September 30, 2026 probes showed that both external agents could independently launch, poll, read, continue and archive normal Amp children. Their own Amp status remained `unknown` and their native assistant output did not appear in Amp transcripts. Direct-parent CLI callback content eventually arrived, owner-authored without source-thread envelopes. Fresh external orbs already inherited the predecessor skill; no bootstrap was needed.
@@ -19,7 +40,7 @@ These findings are account/version-specific. Requested mode is not served model;
 | [Verification record](amp-external-ops/reference/verification-2026-09-30.md) | Durable evidence, late corrections, incident and resource ledger |
 | [Regression procedure](amp-external-ops/reference/regression.md) | Repeatable authorized live checks and report contract |
 | [Migration and rollback](MIGRATION.md) | Rename, installation/publication scopes and recovery |
-| [Maintainer guidance](AGENTS.md) | Repository contribution and validation rules |
+| [Puck installation runbook and maintainer guidance](AGENTS.md) | Install this or another skill safely; repository contribution rules |
 
 ## Discover before installing
 
@@ -45,17 +66,18 @@ In the tested CLI, local `amp skill add` accepted the frontmatter but omitted bu
 
 ## Validate without live agents
 
-Requires Bash and Node.js; no package installation or credentials:
+Requires Bash, Git and Node.js; no package installation or credentials:
 
 ```bash
 node scripts/validate.mjs
 node tests/validate.mjs
-bash -n install.sh tests/install.sh
+bash -n install.sh tests/install.sh tests/runbook.sh
 bash tests/install.sh
+bash tests/runbook.sh
 git diff --check
 ```
 
-The validator checks skill identity/frontmatter, links and anchors, retired guidance, and historical metadata. Installer tests use disposable homes and verify correct layout, repeat installation, and preservation of user files. They do not establish fresh-agent inheritance or live external execution. Live regression is an optional separately scoped run, not something the validator silently launches.
+The validator checks skill identity/frontmatter, links and anchors, retired guidance, and historical metadata. Installer tests use disposable homes and verify correct layout, repeat installation, and preservation of user files. Runbook tests execute the documented copy/publication blocks against a disposable local bare Git repository, checking complete packages, no-op repeats, conflicts, symlinks, dirty clones, invalid destinations and another skill name. No test publishes to Amp or GitHub. These checks do not establish fresh-agent inheritance or live external execution. Live regression is an optional separately scoped run, not something the validator silently launches.
 
 ## Rename and safety
 

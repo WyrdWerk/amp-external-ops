@@ -90,6 +90,14 @@ During the separately authorized rewrite, the same parent CLI parsed the renamed
 
 Offline validation covers identity/frontmatter, relative links/anchors, retirement of obsolete setup guidance, historical metadata, shell syntax, repeat installation, rejection of conflicting or symlink destinations, missing sources, and preservation of the predecessor. Structural tests deliberately break links, anchors and frontmatter to check rejection. These checks are not a new live orchestration or inheritance regression.
 
+## Puck installation runbook validation
+
+The installation follow-up verified `amp clone --help` (`--no-git-setup`, User/Workspace Skills forms) and `amp skill import --help` (shared URL, `--repository`, `--overwrite`). Current official skills documentation was retrieved successfully through connected Composio/Exa and used for hosted text/size limits, scope, precedence and reload guidance. A read-only personal repository clone remained clean at its original revision; nothing was installed or published there.
+
+`bash tests/runbook.sh` extracts and executes the copy/publication shell blocks from root AGENTS.md against disposable local Git repositories and a local bare remote. It verifies complete real-package resources, predecessor preservation, publication HEAD agreement, identical-repeat no-op, rejection/preservation of committed conflicts, symlink targets and dirty clones, rejection of a non-repository destination and path-like name, and publication of a differently named root-style staged package. Git identity/configuration is isolated within the fixtures; there is no network or hosted push. Temporary fixtures are removed after the test.
+
+This establishes the documented local copy/Git mechanics, not hosted installation into another account, shared import execution, required signing on a hosted destination, renamed-skill inheritance, or native reload behavior. Each installation must verify its authorized destination, policy and resolved skill origin. Root README and AGENTS.md provide the reusable Puck request/runbook; they are repository documentation, not bundled runtime prerequisites.
+
 ## Remaining unknowns and next approved tests
 
 Authenticated picker values; actual external served-model metadata; native process termination after archive; active-parent callback queue/latency; project inheritance and skill collisions/reload; numeric Cursor version; exhaustive Claude native skill differences; complete native auth/config no-change proof. Missing-credential failures were not induced by altering credentials. No provider, routing, secret, setup, MCP configuration, or skill change was authorized during the investigation.

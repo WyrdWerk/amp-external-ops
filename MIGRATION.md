@@ -29,6 +29,8 @@ If replacing a local installation, inspect and back up that exact directory outs
 
 Publish only when the user explicitly authorizes the named global repository destination. A GitHub push does not grant that scope.
 
+For an executable Puck procedure covering this package and other skill layouts, use [AGENTS.md: Puck installation runbook](AGENTS.md#puck-installation-runbook). It discovers the requesting user's scope and credentials, preserves full packages, stops on conflicts, publishes only when authorized, and verifies discovery.
+
 1. Use `amp skill repositories` to discover scope, clone URL and write permission. Prefer User scope unless Workspace is explicitly requested.
 2. Use the canonical repository cache clone prescribed by the current building-skills guidance. Preserve any existing work; don't blindly reset a dirty clone.
 3. Read the installed predecessor and its repository history. Copy the whole reviewed `amp-external-ops/` package, not just SKILL.md. Compare origin, path and contents to detect collisions.
