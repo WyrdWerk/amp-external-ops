@@ -45,6 +45,14 @@ The previous runbook prescribed unsupported launch-command customization and unc
 
 The previous canonical content remains in Git history at [7e317be](https://github.com/WyrdWerk/amp-external-ops/commit/7e317bebb4d44ac07fca19b84ce4f4b5c5b1b98f). It contains obsolete guidance; inspect it for provenance, not for operational deployment.
 
+## Privacy cleanup and history limits
+
+Public notes now use neutral case labels and relative sequence instead of concrete thread identifiers/links, private run markers, content fingerprints and wall-clock event times. Findings, versions, authorization limits and cleanup outcomes remain intact. Keep the original source mapping and detailed evidence outside this public repository.
+
+Use an existing verified contributor GitHub `noreply` identity for both author and committer of future public commits. A repository-local email setting can prevent ordinary Git commands from reusing a contact address without changing Amp account/global identity; verify the resulting commit metadata because environment overrides can supersede configuration. Do not add a concrete source thread ID as a commit trailer.
+
+These forward changes do **not** remove references, contact addresses or source-thread trailers from older commits. Full historical redaction requires separate explicit approval for the exact rewrite and force-push, preservation of owner-controlled evidence outside the repository, verification of all published refs, and coordination with collaborators whose commit IDs will change. A rewritten branch cannot guarantee removal from existing clones, forks, GitHub caches or other copies. Do not promise complete erasure or contact a provider without authorization.
+
 ## Rollback without account resets
 
 - Published content: review and create a revert commit for the migration commit(s), validate, then push only with authorization for the target. Do not force-push or erase investigation evidence.

@@ -44,6 +44,12 @@ for (const file of files) {
   const text = readFileSync(file, 'utf8')
   assert.ok(!text.includes('--new-thread-command'), `retired setup option in ${relative(root, file)}`)
   assert.ok(!/curl[^\n]*\|\s*(?:bash|sh)/.test(text), `unreviewed remote shell guidance in ${file}`)
+  const disclosure = `public documentation disclosure in ${relative(root, file)}`
+  assert.ok(!/\bT-[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\b/i.test(text), disclosure)
+  assert.ok(!/\b(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?\b/.test(text), disclosure)
+  for (const email of text.matchAll(/[a-z0-9._%+-]+@([a-z0-9.-]+\.[a-z]{2,})/gi)) {
+    assert.ok(['example.com', 'example.invalid', 'users.noreply.github.com'].includes(email[1].toLowerCase()), disclosure)
+  }
   for (const match of text.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
     const target = match[1]
     if (/^[a-z][\w+.-]*:/i.test(target)) continue
@@ -56,4 +62,4 @@ for (const file of files) {
     links++
   }
 }
-console.log(`PASS: ${name} identity/frontmatter, ${files.length} Markdown files, ${links} local links/anchors, retired guidance and historical metadata`)
+console.log(`PASS: ${name} identity/frontmatter, ${files.length} Markdown files, ${links} local links/anchors, public-documentation privacy, retired guidance and historical metadata`)

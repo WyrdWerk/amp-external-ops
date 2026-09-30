@@ -82,6 +82,8 @@ After the run, compare the accessible sanitized configuration/auth metadata with
 
 ## Resource ledger
 
+Keep the populated ledger and source evidence in the owner's run record. When publishing a summary, replace concrete IDs/URLs and private markers with neutral case labels, and exact event times with relative sequence. Preserve relationships, results and cleanup states; the public record is not a substitute for the owner's source mapping.
+
 | ID / URL | Owner / purpose | Parent relationship | Requested mode / size | Observed executor / model | Markers / receipt | Cleanup / timestamp |
 |---|---|---|---|---|---|---|
 | `<T-uuid and full URL>` | `<probe or plugin>` | `<explicit or unknown>` | `<arguments>` | `<metadata or unavailable>` | `<prompt vs execution vs receipt>` | `<archived/deleted/unknown>` |

@@ -10,12 +10,13 @@ metadata:
 
 Discover the session's actual capabilities, execute only authorized operations, and verify effects rather than command acceptance. Ordinary Amp thread operations are the foundation; external-agent execution and reporting require additional evidence.
 
-Read [the dated verification record](reference/verification-2026-09-30.md) for observed versions, scope, private evidence links, failures, and unresolved questions. Historical results are not universal product guarantees.
+Read [the dated verification record](reference/verification-2026-09-30.md) for observed versions, scope, sanitized case labels, failures, and unresolved questions. Historical results are not universal product guarantees.
 
 ## Authorization comes before capability
 
 - The parent owns coordination and integration. A child may create threads only when its task and applicable session policy permit it. Technical CLI access does not override a delegation restriction; otherwise route the request through the parent with the exact mode key and approved size.
 - Establish authorized thread creation, steering, lifecycle actions, destination, resource budget, and deletion scope. Keep a [resource ledger](reference/regression.md#resource-ledger) from the first launch, including plugin-created threads.
+- Keep concrete IDs, source mappings, private run markers and exact event times in the owner's run record, not a public repository. Public summaries use neutral case labels and relative sequence without weakening findings or evidence limits.
 - Default to read-only discovery. Do not change settings, model providers, routing, secrets, environment variables, MCP configuration, external-agent setup, or built-in launch/install scripts without explicit authorization.
 - Do not invoke authentication helpers, initiate OAuth, reconnect integrations, or request credentials during a no-auth investigation, even if the call is expected to fail. Authentication-blocked is a result, not permission to repair it.
 - Never expose secret values, headers, cookies, tokens, raw credential files, or unsanitized exports. Report auth source categories and statuses only.

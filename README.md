@@ -43,6 +43,8 @@ September 30, 2026 probes showed that both external agents could independently l
 
 These findings are account/version-specific. Requested mode is not served model; connected MCP is not invocable MCP; callback acceptance is not receipt; archival is not native-process termination. The skill requires current capability discovery and explicit authorization rather than promising universal behavior.
 
+Public verification notes use neutral case labels and relative sequence, not concrete thread links/IDs, private correlation markers or wall-clock event times. Original evidence remains outside this repository. Earlier commits may still contain removed references and contributor email metadata; forward redaction is not history erasure. See [privacy cleanup and history limits](MIGRATION.md#privacy-cleanup-and-history-limits).
+
 ## Read by task
 
 | Document | Purpose |
@@ -90,7 +92,7 @@ bash tests/runbook.sh
 git diff --check
 ```
 
-The validator checks skill identity/frontmatter, links and anchors, retired guidance, and historical metadata. Installer tests use disposable homes and verify correct layout, repeat installation, and preservation of user files. Runbook tests execute the documented copy/publication blocks against a disposable local bare Git repository, checking complete packages, no-op repeats, conflicts, symlinks, dirty clones, invalid destinations and another skill name. No test publishes to Amp or GitHub. These checks do not establish fresh-agent inheritance or live external execution. Live regression is an optional separately scoped run, not something the validator silently launches.
+The validator checks skill identity/frontmatter, links and anchors, public-documentation privacy, retired guidance, and historical metadata. Privacy tests reject concrete thread references, contact emails and event times while allowing placeholders. These guards are not a general secret scanner or a Git-history audit. Installer tests use disposable homes and verify correct layout, repeat installation, and preservation of user files. Runbook tests execute the documented copy/publication blocks against a disposable local bare Git repository, checking complete packages, no-op repeats, conflicts, symlinks, dirty clones, invalid destinations and another skill name. No test publishes to Amp or GitHub. These checks do not establish fresh-agent inheritance or live external execution. Live regression is an optional separately scoped run, not something the validator silently launches.
 
 ## Rename and safety
 

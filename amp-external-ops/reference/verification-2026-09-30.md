@@ -1,12 +1,11 @@
 # Verification record: September 30, 2026
 
-This is a sanitized durable account of the external-agent orchestration investigation, including late callback corrections. It is not a guarantee for other accounts, projects, versions, or agents. Original source mappings remain outside this repository; this public repository does not contain raw transcripts, credential metadata, signed URLs, or report exports.
+This is a sanitized durable account of the external-agent investigation, including late callback corrections. It is not a guarantee for other accounts, projects, versions, or agents. Concrete source identifiers, thread links, correlation markers and wall-clock event times are omitted from the public record. Original correspondence and report artifacts remain outside this repository; this record contains no raw transcripts, credential metadata, signed URLs or report exports.
 
 ## Provenance and scope
 
-- Parent investigation and full report
-- Puck correspondence and complete handoff
-- Core tests preceded deferred callbacks and a handoff correction.
+- Sources: parent investigation, Puck correspondence, native report files and independently inspected normal-child results. Public case labels below replace the owner's concrete thread identifiers.
+- Core tests were followed by deferred callbacks and a handoff correction; relative sequence is retained without exact event times.
 - Parent/Cursor Amp CLI `0.0.1790745274-gb3d311`; Claude orb Amp `0.0.1790745824-gda186f`; native Claude Code `2.1.285`. Numeric Cursor version was not captured.
 - No-project orbs. External probes requested `a1.small`; normal children requested `low/a1.tiny`. No cross-project regression.
 - The historical skill was named `amp-thread-ops`, verified September 24 against Amp `0.0.1790228929`. The renamed content was not itself live-tested as an inherited global skill.
@@ -29,13 +28,13 @@ The parent retained coordination. Both external agents independently created exa
 | Peer Cursor/Claude markers persisted | Destination transcript inspection |
 | Archive/unarchive/rearchive, dedicated deletion | Lifecycle checks and absence verification |
 
-The initial report said direct-parent CLI continuation was accepted but delivery unverified. Later `Cursor parent callback` and `Claude parent callback` arrived in the parent, followed by result/resend/fallback markers. The final conclusion is **content receipt verified**, with origin supported by marker/content correlation, not an authenticated source envelope. Arrival after the parent turn ended is consistent with queuing; queue mechanics, ordering and latency guarantees remain unknown.
+The initial report said direct-parent CLI continuation was accepted but delivery unverified. Later Cursor and Claude parent callbacks arrived, followed by result/resend/fallback markers. The final conclusion is **content receipt verified**, with origin supported by marker/content correlation, not an authenticated source envelope. Arrival after the parent turn ended is consistent with queuing; queue mechanics, ordering and latency guarantees remain unknown.
 
 Native external report files were fetched and inspected independently. `download_thread_file` returned not-found for existing paths; `thread_file_url` followed by `amp files get` worked. Normal child transcripts provided independent evidence without Puck mediation.
 
 ## Skill, MCP and model qualifications
 
-The 37 skills comprised 27 personal and 10 official; workspace inventory was empty and project-local paths absent. Both fresh external orbs already had the predecessor under `~/.agents/skills`; Claude mirrored 37 names under `~/.claude/skills` and had additional built-ins. Parent/normal sessions used managed caches. Three predecessor SKILL files matched SHA-256 `<source fingerprint omitted>`. No installer was needed during the probes. Internal materialization, precedence collisions and external reload requirements were not inspected.
+The 37 skills comprised 27 personal and 10 official; workspace inventory was empty and project-local paths absent. Both fresh external orbs already had the predecessor under `~/.agents/skills`; Claude mirrored 37 names under `~/.claude/skills` and had additional built-ins. Parent/normal sessions used managed caches. SHA-256 comparisons confirmed three predecessor SKILL files matched; the concrete content fingerprint is omitted here. No installer was needed during the probes. Internal materialization, precedence collisions and external reload requirements were not inspected.
 
 Personal registry Composio (11), Devin (23 after checks; earlier cache 22) and Trybeacon (10) remained discoverable. Normal parent Composio discovery/Exa/Parallel calls and a Devin integrations read succeeded. Native external exposure was separate: Claude only Amp; Cursor Cloudflare docs worked, other plugins required auth. CLI `amp svc` was account-gated. Trybeacon lacked a connected browser. See [the full matrices](capabilities.md) for catalogue and invocation distinctions.
 
@@ -80,7 +79,7 @@ There was no complete pre/post snapshot of every Cursor-native auth/config file.
 | Claude normal child | Archived; idle |
 | Automatic plugin review | Archived; idle |
 | Second automatic review | Archived; idle |
-| Deletion-only `<THREAD-ID>` | Deleted after sanitized evidence preservation |
+| Deletion-only probe | Deleted after sanitized evidence preservation |
 
 Final explicit unarchived marker search returned only parent/Puck. No pre-existing thread was deleted. Archive metadata does not prove external native process termination. Plugin local-client records were server-readable; ordinary local `-x` was not retested, so categorical local invisibility claims must remain qualified.
 
@@ -100,16 +99,16 @@ This establishes the documented local copy/Git mechanics, not hosted installatio
 
 ## Existing-thread wake-up observation
 
-This is a separate, scoped recovery observation for the existing external-agent thread, not another disposable external-agent orchestration probe. Evidence comes from that thread and Puck's recorded wake-up sequence. The agent key/version and actual served model were not established for this case; do not attribute it to both Cursor and Claude.
+Case label: existing-thread recovery. This is a separate, scoped observation for a pre-existing external-agent thread, not another disposable investigation probe. Evidence comes from that thread and Puck's recorded wake-up sequence; source identifiers are withheld from this public record. The agent key/version and actual served model were not established for this case; do not attribute it to both Cursor and Claude.
 
 | Sequence | Evidence / scope |
 |---|---|
-| Step 1 | Original user task recorded in the target thread |
-| Step 2 | Puck's `get_thread_status` returned `agentState=unknown`; its `read_thread` showed only the original prompt, no assistant/tool activity or visible explanation for the UI issue |
-| Step 3 | Owner reported that the thread had worked earlier; prior interaction was not present in the inspected server transcript |
-| Step 4 | Owner authorized the harmless wake-up check |
-| Step 5 | Puck sent one normal `send_thread_message` to the same ID; send confirmation recorded |
-| Step 6 | Owner replied “oh it worked”; owner-confirmed usability, not a recorded target-agent response |
+| Original task | User task recorded in the target thread |
+| Read-only triage | Puck's `get_thread_status` returned `agentState=unknown`; its `read_thread` showed only the original prompt, no assistant/tool activity or visible explanation for the UI issue |
+| Owner report | Owner reported that the thread had worked earlier; prior interaction was not present in the inspected server transcript |
+| Authorization | Owner authorized the harmless wake-up check |
+| Wake-up submission | Puck sent one normal `send_thread_message` to the same ID; send confirmation recorded |
+| Outcome report | Owner confirmed renewed usability; not a recorded target-agent response |
 
 The recorded follow-up was:
 

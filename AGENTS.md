@@ -119,7 +119,9 @@ Return the source URL/revision, selected skill, destination scope/repository/pat
 - Never alter Amp settings, providers, secrets, environment variables, MCP configuration or built-in external-agent setup as part of repository maintenance.
 - Do not invoke auth helpers to test failures. If blocked, record the exact sanitized error and stop that route.
 - Do not reset external agents or execute historical command templates. [deploy/originals.json](deploy/originals.json) is retained for provenance only.
-- Never commit raw transcripts, exports, credentials or temporary signed URLs. Private evidence links and sanitized summaries are sufficient.
+- Never commit raw transcripts, exports, credentials, temporary signed URLs, concrete thread IDs/links, private correlation markers or exact event times. Keep source mappings outside this public repository; publish neutral case labels, relative sequence and sanitized findings. Do not place a source thread identifier in a public commit trailer.
+- Use the contributor's verified GitHub `noreply` email for both author and committer on public commits. Check actual commit metadata before pushing; configuration alone is not proof. Set repository-local identity only within an authorized privacy cleanup, never change account/global identity or invent an address.
+- Some execution environments automatically append source-tracing trailers. Check the created commit even when the supplied message has none. Stop before pushing a disclosed identifier; correct only the task's unpublished commit using a verified Git route, then recheck. Published-history cleanup needs separate approval.
 - Preserve unexpected user edits; use reviewable commits and never rewrite published history as rollback.
 
 ## Editing
@@ -142,6 +144,8 @@ git diff --check
 ```
 
 Installer tests must use disposable HOME directories, preserve conflicting content, and perform no network or authentication. Runbook tests extract the documented shell blocks and publish only to a disposable local bare repository, never an Amp/GitHub remote. Keep the package dependency-free unless a demonstrated requirement justifies adding tooling.
+
+The validator rejects concrete thread identifiers, wall-clock event times and non-example/non-noreply email addresses in public Markdown. Its negative tests use synthetic values. These checks are not a general secret scanner or Git-history audit; separately inspect staged source files and actual commit identities/messages before publication.
 
 ## Publication and rollback
 

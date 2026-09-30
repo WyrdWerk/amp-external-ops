@@ -17,6 +17,25 @@ try {
 
   const readme = join(fixture, 'README.md')
   const originalReadme = readFileSync(readme, 'utf8')
+  const threadID = 'T-' + '12345678-1234-1234-1234-123456789abc'
+  for (const disclosure of [
+    threadID,
+    `https://ampcode.com/threads/${threadID}`,
+    'Maintainer: private-contact@personal.test',
+    'Event at 12:34 UTC',
+    'Event at 23:45:56.789 UTC',
+  ]) {
+    writeFileSync(readme, `${originalReadme}\n${disclosure}\n`)
+    const exposed = run()
+    assert.notEqual(exposed.status, 0, 'personal documentation disclosure was accepted')
+    assert.match(exposed.stderr, /public documentation disclosure/)
+  }
+  writeFileSync(readme, `${originalReadme}\nContact placeholder: runbook@example.invalid\nThread: <T-uuid>\n`)
+  const placeholders = run()
+  assert.equal(placeholders.status, 0, placeholders.stderr)
+  writeFileSync(readme, originalReadme)
+  console.log('PASS: concrete thread references, contact emails and event times rejected; placeholders accepted')
+
   writeFileSync(readme, `${originalReadme}\n[broken](missing-reference.md)\n`)
   const missingFile = run()
   assert.notEqual(missingFile.status, 0, 'missing relative link was accepted')
